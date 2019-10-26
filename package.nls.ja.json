@@ -1,0 +1,16 @@
+{
+    "cmd.generateSnippet.title": "スニペットを作成",
+    "cfg.snippetFilePath.description": "スニペットファイルの場所を指定します。\n例）C:\\Users\\***\\Appdata\\Roaming\\Code\\User\\snippets\\\n\"default\"が機能しない場合は、パスを設定する必要があります。（注意：WSLを使用している場合、\"default\"は機能しません）\n例）/mnt/c/Users/***/Appdata/Roaming/Code/User/snippets/",
+    "ts.fileNotFound": "ファイルが見つかりません",
+    "ts.canceled": "スニペットの登録はキャンセルされました",
+    "ts.failed": "スニペットの登録に失敗しました。 \"setting.json\" の \"generateSnippet.snippetFilePath\" を確認してください",
+    "ts.registered": "スニペットが登録されました",
+    "ts.alreadyExists": "同じ名前のスニペットが既に存在します",
+    "ts.enterName": "スニペットの名前を入力",
+    "ts.enterTrigger": "スニペットのトリガーを入力",
+    "ts.enterDescription": "スニペットの説明を入力（任意）",
+    "ts.emptyName": "名前が入力されていません",
+    "ts.emptyTrigger": "トリガーが入力されていません",
+    "ts.snippetFileLocation": "スニペットファイルが作成されました：",
+    "ts.parseError": "JSONのパースに失敗しました。："
+}

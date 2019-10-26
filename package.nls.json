@@ -1,0 +1,16 @@
+{
+    "cmd.generateSnippet.title": "Generate snippet",
+    "cfg.snippetFilePath.description": "Specify the location of the snippet file.\n ex) C:\\Users\\***\\Appdata\\Roaming\\Code\\User\\snippets\\\n If the \"default\" does not work, please set the path.\n (NOTE: If you are using WSL, \"default\" will not work.)\n ex) /mnt/c/Users/***/Appdata/Roaming/Code/User/snippets/",
+    "ts.fileNotFound": "File not found.",
+    "ts.canceled": "Snippet registration has been canceled.",
+    "ts.failed": "Failed to register snippet. Please check \"generateSnippet.snippetFilePath\" in \"setting.json\".",
+    "ts.registered": "Snippet has been registered!",
+    "ts.alreadyExists": "Snippet with this name already exists.",
+    "ts.enterName": "Enter snippet name",
+    "ts.enterTrigger": "Enter snippet trigger",
+    "ts.enterDescription": "Enter snippet description (optional)",
+    "ts.emptyName": "Input snippet name.",
+    "ts.emptyTrigger": "Input snippet trigger.",
+    "ts.snippetFileLocation": "Snippet file has been created: ",
+    "ts.parseError": "Failed to parse: "
+}
