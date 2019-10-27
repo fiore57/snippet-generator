@@ -67,6 +67,9 @@ Specify the path of "snippets" file. Basically, you can use "default".
 ## Known issues
 - Snippet file indentation is strange
 
+## License
+This extension is released under the WTFPL, see LICENSE.
+
 <br />
 
 ---
@@ -139,3 +142,6 @@ Snippet Generator は、この面倒なスニペットの登録作業を簡単�
 
 ## 既知の問題
 - スニペットファイルのインデントがおかしい
+
+## ライセンス
+この拡張機能は、WTFPLのもとで公開されています。詳しくはLICENSEを見てください。
