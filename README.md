@@ -1,6 +1,6 @@
 # Snippet Generator
 
-[![Build Status](https://dev.azure.com/ayafiore/snippet-generator/_apis/build/status/fiore57.snippet-generator?branchName=master)](https://dev.azure.com/ayafiore/snippet-generator/_build/latest?definitionID=2&branchName=master)
+[![Build Status](https://dev.azure.com/ayafiore/snippet-generator/_apis/build/status/fiore57.snippet-generator?branchName=master)](https://dev.azure.com/ayafiore/snippet-generator/_build/latest?definitionId=2&branchName=master)
 
 [日本語](#japanese-readme)
 
@@ -19,13 +19,9 @@ VSCode has a function to call registered snippets. This is very useful, but to r
             "using namespace std;",
             "",
             "int main() {",
-            "   cout << \"Hello world!\" << endl;"   // need to escape double quotes
+            "   cout << \"Hello world!\" << endl;"
             "}"
         ],
-        /*
-        or
-        "body": "#include <iostream>\n\nusing namespace std;\n\nint main() {\n\tcout << \"Hello, world!\" << endl;\n}"
-        */
         "description": "it is sample snippet"
     }
 }
@@ -41,7 +37,7 @@ Snippet generator allowes you to **easily** and **quickly** register snippet.
 6. Enter snippet description (optional).
 
 ## Settings
-### Path setting
+- "generateSnippet.snippetFilePath"
 
 Specify the path of "snippets" file. Basically, you can use "default".
 
@@ -50,30 +46,34 @@ Specify the path of "snippets" file. Basically, you can use "default".
 ```json
 {
     "generateSnippet.snippetFilePath": "default"
-    // "generateSnippet.snippetFilePath": "C:\\Users\\***\\Appdata\\Roaming\\Code\\User\\snippets\\"
-    // "generateSnippet.snippetFilePath": "/mnt/c/Users/***/Appdata/Roaming/Code/User/snippets"
+}
+{
+    "generateSnippet.snippetFilePath": "C:\\Users\\***\\Appdata\\Roaming\\Code\\User\\snippets\\"
+}
+{
+    "generateSnippet.snippetFilePath": "/mnt/c/Users/***/Appdata/Roaming/Code/User/snippets"
 }
 ```
+
 ## Key settings
-### Generate snippet
+- "extension.generateSnippet"
 ```json
 {
     "key": "ctrl+alt+s",
     "command": "extension.generateSnippet"
 }
 ```
+
 ## Known issues
 - Snippet file indentation is strange
-
-\!\[feature X\]\(images/feature-x.png\)
 
 <br />
 
 ---
 
 <br />
+
 <a name = "japanese-readme"></a>日本語
-<br />
 
 ## 概要
 Snippet Generatorは、簡単にスニペットを追加するためのVisual Studio Code拡張機能です。
@@ -90,13 +90,9 @@ VSCodeには、登録したスニペットを簡単に呼び出すことがで�
             "using namespace std;",
             "",
             "int main() {",
-            "   cout << \"Hello world!\" << endl;"   // need to escape double quot
+            "   cout << \"Hello world!\" << endl;"
             "}"
         ],
-        /*
-        or
-        "body": "#include <iostream>\n\nusing namespace std;\n\nint main() {\n\tcout << \"Hello, world!\" << endl;\n}"
-        */
         "description": "it is sample snippet"
     }
 }
@@ -114,7 +110,8 @@ Snippet Generator は、この面倒なスニペットの登録作業を簡単�
 6. スニペットの説明を入力する（任意）
 
 ## 設定
-### パスの設定
+- "generateSnippet.snippetFilePath"
+
 「snippets」ファイルのパスを指定します。基本的に、「default」で問題ありません。
 
 （**注意**：WSL（Windows subsystem for Linux）を使用している場合、デフォルトの設定ではスニペットの作成に失敗します。）
@@ -122,12 +119,17 @@ Snippet Generator は、この面倒なスニペットの登録作業を簡単�
 ```json
 {
     "generateSnippet.snippetFilePath": "default"
-    // "generateSnippet.snippetFilePath": "C:\\Users\\***\\Appdata\\Roaming\\Code\\User\\snippets\\"
-    // "generateSnippet.snippetFilePath": "/mnt/c/Users/***/Appdata/Roaming/Code/User/snippets"
+}
+{
+    "generateSnippet.snippetFilePath": "C:\\Users\\***\\Appdata\\Roaming\\Code\\User\\snippets\\"
+}
+{
+    "generateSnippet.snippetFilePath": "/mnt/c/Users/***/Appdata/Roaming/Code/User/snippets"
 }
 ```
+
 ## キーバインド
-### スニペットの作成
+- "extension.generateSnippet"
 ```json
 {
     "key": "ctrl+alt+s",
