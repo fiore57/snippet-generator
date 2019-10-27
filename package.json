@@ -1,17 +1,22 @@
 {
 	"name": "snippet-generator",
 	"displayName": "Snippet Generator",
+	"version": "0.1.0",
+	"publisher": "fiore57",
 	"description": "Simple snippet generator for VSCode",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.39.0"
+	"author": {
+		"name": "fiore57"
 	},
 	"categories": [
+		"Snippets",
 		"Other"
 	],
 	"activationEvents": [
 		"onCommand:extension.generateSnippet"
 	],
+	"engines": {
+		"vscode": "^1.39.0"
+	},
 	"main": "./out/src/extension.js",
 	"contributes": {
 		"commands": [
@@ -64,5 +69,14 @@
 		"tslint": "^5.12.1",
 		"typescript": "^3.3.1",
 		"vscode-test": "^1.2.0"
-	}
+	},
+	"license": "SEE LICENSE IN LICENSE",
+	"bugs": {
+		"url": "https://github.com/fiore57/snippet-generator/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/fiore57/snippet-generator.git"
+	},
+	"homepage": "https://github.com/fiore57/snippet-generator/blob/master/README.md"
 }
