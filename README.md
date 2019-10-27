@@ -1,6 +1,6 @@
 # Snippet Generator
 
-[![Build Status](https://dev.azure.com/ayafiore/snippet-generator/_apis/build/status/fiore57.snippet-generator?branchName=master)](https://dev.azure.com/ayafiore/snippet-generator/_build/latest?definitionId=2&branchName=master)
+[![Build Status](https://dev.azure.com/fiore57/snippet-generator/_apis/build/status/fiore57.snippet-generator?branchName=master)](https://dev.azure.com/fiore57/snippet-generator/_build/latest?definitionId=2&branchName=master)
 
 [日本語](#japanese-readme)
 
