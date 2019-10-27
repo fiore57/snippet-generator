@@ -1,65 +1,139 @@
-# snippet-generator README
+# Snippet Generator
 
-This is the README for your extension "snippet-generator". After writing up a brief description, we recommend including the following sections.
+[![Build Status](https://dev.azure.com/ayafiore/snippet-generator/_apis/build/status/fiore57.snippet-generator?branchName=master)](https://dev.azure.com/ayafiore/snippet-generator/_build/latest?definitionID=2&branchName=master)
 
-## Features
+[日本語](#japanese-readme)
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+## Overview
+Snippet Generator is an extension of Visual Studio Code that makes it easy to add snippets.
 
-For example if there is an image subfolder under your extension project workspace:
+## Description
+VSCode has a function to call registered snippets. This is very useful, but to register a snippet, we must enclose the statement with double quotes on each line, or escape tabs and newlines. (of course, double quotes in the snippet must be escaped) It is quite bother to do that.
+```json
+{
+    "hello-world": {
+        "prefix": "helloworld",
+        "body": [
+            "#include <iostream>",
+            "",
+            "using namespace std;",
+            "",
+            "int main() {",
+            "   cout << \"Hello world!\" << endl;"   // need to escape double quotes
+            "}"
+        ],
+        /*
+        or
+        "body": "#include <iostream>\n\nusing namespace std;\n\nint main() {\n\tcout << \"Hello, world!\" << endl;\n}"
+        */
+        "description": "it is sample snippet"
+    }
+}
+```
+Snippet generator allowes you to **easily** and **quickly** register snippet.
+
+## Usage
+1. Select statement.
+2. Press Ctrl+Alt+S (⌘⌥S) or select "Generate snippet" in the right-click menu.
+3. Select language.
+4. Enter snippet name.
+5. Enter snippet trigger.
+6. Enter snippet description (optional).
+
+## Settings
+### Path setting
+
+Specify the path of "snippets" file. Basically, you can use "default".
+
+**NOTE**: If you use WSL(Windows subsystem for Linux), you have to set the path.
+
+```json
+{
+    "generateSnippet.snippetFilePath": "default"
+    // "generateSnippet.snippetFilePath": "C:\\Users\\***\\Appdata\\Roaming\\Code\\User\\snippets\\"
+    // "generateSnippet.snippetFilePath": "/mnt/c/Users/***/Appdata/Roaming/Code/User/snippets"
+}
+```
+## Key settings
+### Generate snippet
+```json
+{
+    "key": "ctrl+alt+s",
+    "command": "extension.generateSnippet"
+}
+```
+## Known issues
+- Snippet file indentation is strange
 
 \!\[feature X\]\(images/feature-x.png\)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+<br />
 
-## Requirements
+---
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+<br />
+<a name = "japanese-readme"></a>日本語
+<br />
 
-## Extension Settings
+## 概要
+Snippet Generatorは、簡単にスニペットを追加するためのVisual Studio Code拡張機能です。
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## 説明
+VSCodeには、登録したスニペットを簡単に呼び出すことができる機能がついています。しかし、スニペットを登録するには、スニペット化したい文を毎行ダブルクォートで囲むか、タブや改行をエスケープしなければなりません（もちろん、スニペット内のダブルクォートはエスケープする必要があります）。これは、かなり面倒です。
+```json
+{
+    "hello-world": {
+        "prefix": "helloworld",
+        "body": [
+            "#include <iostream>",
+            "",
+            "using namespace std;",
+            "",
+            "int main() {",
+            "   cout << \"Hello world!\" << endl;"   // need to escape double quot
+            "}"
+        ],
+        /*
+        or
+        "body": "#include <iostream>\n\nusing namespace std;\n\nint main() {\n\tcout << \"Hello, world!\" << endl;\n}"
+        */
+        "description": "it is sample snippet"
+    }
+}
+```
 
-For example:
+Snippet Generator は、この面倒なスニペットの登録作業を簡単に、素早く行うことができます。
 
-This extension contributes the following settings:
+## 使い方
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+1. スニペット化したい文字列を選択する（ファイル全体をスニペット化したい場合、選択しなくてもOK）
+2. Ctrl+Alt+S（Control+Option+S）を押す。または、右クリックメニューから「Generate snippet」を選択する
+3. 言語を選択する
+4. スニペットの名前を入力する
+5. スニペットのトリガー（prefix）を入力する
+6. スニペットの説明を入力する（任意）
 
-## Known Issues
+## 設定
+### パスの設定
+「snippets」ファイルのパスを指定します。基本的に、「default」で問題ありません。
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+（**注意**：WSL（Windows subsystem for Linux）を使用している場合、デフォルトの設定ではスニペットの作成に失敗します。）
 
-## Release Notes
+```json
+{
+    "generateSnippet.snippetFilePath": "default"
+    // "generateSnippet.snippetFilePath": "C:\\Users\\***\\Appdata\\Roaming\\Code\\User\\snippets\\"
+    // "generateSnippet.snippetFilePath": "/mnt/c/Users/***/Appdata/Roaming/Code/User/snippets"
+}
+```
+## キーバインド
+### スニペットの作成
+```json
+{
+    "key": "ctrl+alt+s",
+    "command": "extension.generateSnippet"
+}
+```
 
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+## 既知の問題
+- スニペットファイルのインデントがおかしい
