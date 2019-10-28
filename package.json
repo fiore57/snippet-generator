@@ -1,7 +1,7 @@
 {
 	"name": "snippet-generator",
 	"displayName": "Snippet Generator",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"publisher": "fiore57",
 	"description": "Simple snippet generator for VSCode",
 	"author": {
