@@ -2,7 +2,7 @@
 
 [![Build Status](https://dev.azure.com/fiore57/snippet-generator/_apis/build/status/fiore57.snippet-generator?branchName=master)](https://dev.azure.com/fiore57/snippet-generator/_build/latest?definitionId=2&branchName=master)
 
-[日本語](#japanese-readme)
+[日本語](#概要)
 
 ## Overview
 Snippet Generator is an extension of Visual Studio Code that makes it easy to add snippets.
@@ -64,9 +64,6 @@ Specify the path of "snippets" file. Basically, you can use "default".
 }
 ```
 
-## Known issues
-- Snippet file indentation is strange
-
 ## License
 This extension is released under the WTFPL, see LICENSE.
 
@@ -75,8 +72,6 @@ This extension is released under the WTFPL, see LICENSE.
 ---
 
 <br />
-
-<a name = "japanese-readme"></a>日本語
 
 ## 概要
 Snippet Generatorは、簡単にスニペットを追加するためのVisual Studio Code拡張機能です。
@@ -139,9 +134,6 @@ Snippet Generator は、この面倒なスニペットの登録作業を簡単�
     "command": "extension.generateSnippet"
 }
 ```
-
-## 既知の問題
-- スニペットファイルのインデントがおかしい
 
 ## ライセンス
 この拡張機能は、WTFPLのもとで公開されています。詳しくはLICENSEを見てください。
