@@ -119,7 +119,6 @@ export function activate(context: vscode.ExtensionContext) {
 				const snippetFileName = curSnippet.language + '.json';
 				snippetFilePath += snippetFileName;
 
-				console.log(snippetFilePath);
 				// スニペットの追加処理
 				readFile(snippetFilePath, (err, text) => {
 					if (err) {	// ファイルが存在しない場合
@@ -147,6 +146,7 @@ export function activate(context: vscode.ExtensionContext) {
 					}
 					else {		// ファイルが既に存在する場合
 						let snippetList = json.parseJson(text.toString());
+
 						if (snippetList === undefined) {
 							// JSONの解析に失敗
 							vscode.window.showErrorMessage(localeString('ts.parseError') + snippetFileName);
@@ -165,6 +165,7 @@ export function activate(context: vscode.ExtensionContext) {
 							description: curSnippet.description
 						};
 						const newText = JSON.stringify(snippet, null, '\t');
+
 						writeFile(snippetFilePath, json.insertSnippetToJson(curSnippet.name, newText), ((_) => { }));
 
 						vscode.window.showInformationMessage(localeString('ts.registered'));
