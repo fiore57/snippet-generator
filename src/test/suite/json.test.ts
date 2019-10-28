@@ -2,7 +2,6 @@ import * as assert from 'assert';
 
 import * as json from '../../json';
 
-
 suite('Extension Test Suite', () => {
 	const jsonSample1: string = `
 // It is sample snippet!

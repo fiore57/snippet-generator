@@ -8,14 +8,38 @@ export interface SnippetDataList {
     [key: string]: SnippetData;
 }
 
-let jsonText: string = '';
+class Tmp<T>{
+    private _val: T | null = null;
+    public constructor(init?: T) {
+        if (init !== undefined) {
+            this._val = init;
+        }
+    }
+    public set(val: T) {
+        this._val = val;
+    }
+    public getAndClear(): T {
+        const ret = this._val;
+        this._val = null;
+        if (ret === null) {
+            console.error('メッセージは でないはずだよ');
+            throw new Error();
+        }
+        return ret;
+    }
+}
+
+let jsonTextTmp = new Tmp<string>();
 let closeBracketList: number[] = [];
-let lastCommaIndex = -1;
+let lastCommaIndexTmp = new Tmp<number>(-1);
 
 // JSON形式のテキストをオブジェクトに変換する
 export function parseJson(text: string): SnippetDataList | undefined {
-    jsonText = text;
+    jsonTextTmp.set(text);
     text = removeCommentFromJson(text);
+    if (closeBracketList.length === 0) {    // テキストが空の場合
+        return {};
+    }
     let out = text;
 
     const regexp = /"(\\.|[^"\\])*"/ig
@@ -25,7 +49,13 @@ export function parseJson(text: string): SnippetDataList | undefined {
         let fixed = substr.replace(/\t/g, '\\t');
         out = out.substring(0, result.index) + fixed + text.substring(regexp.lastIndex);
     }
-    return JSON.parse(out);
+    try {
+        return JSON.parse(out);
+    }
+    catch (e) {
+        console.log(e);
+        return undefined;
+    }
 }
 
 // JSON形式のテキストからコメントを取り除く
@@ -116,7 +146,7 @@ export function removeCommentFromJson(text: string) {
                 else if (c === ',') {
                     prevCommaIndex = index;
                     removeCharCountToComma = removeCharCount;
-                    lastCommaIndex = index;
+                    lastCommaIndexTmp.set(index);
                 }
             }
         }
@@ -133,30 +163,46 @@ export function removeCommentFromJson(text: string) {
 
 export function insertSnippetToJson(name: string, data: string) {
     let ret = '';
-    name = '"' + name + '"';
+
+    function replacer(_match: string, _p1: string, p2: string, _offset: number, _string: string) {
+        return '\t' + p2;
+    }
+    // 2行目以降の行頭にタブを挿入
+    data = data.replace(/((?<=\n))(.)/g, replacer)
+    /*
+        data
+    {                               <- Tabなし
+            "prefix": "***";
+            "body": "***";
+            "description": "***";
+        }
+    */
+
+    const text = jsonTextTmp.getAndClear();
+    const insertText = `\t"${name}": ${data}\n`;
+
     if (closeBracketList.length === 0) {
-        ret = jsonText + name + ': {' + data + '\n}';
+        ret = text + '{\n' + insertText + '}';
     }
     else if (closeBracketList.length === 1) {
         const insertIndex = closeBracketList[closeBracketList.length - 1];
-        ret = jsonText.slice(0, insertIndex) + name + ': ' + data + '\n' + jsonText.slice(insertIndex);
+        ret = text.slice(0, insertIndex) + '\n' + insertText + text.slice(insertIndex);
     }
     else {
         const commaIndex = closeBracketList[closeBracketList.length - 2];
         const dataIndex = closeBracketList[closeBracketList.length - 1];
+        const lastCommaIndex = lastCommaIndexTmp.getAndClear();
         if (commaIndex < lastCommaIndex && lastCommaIndex < dataIndex) {
             // ケツカンマがある場合
-            ret = jsonText.slice(0, dataIndex) + name + ': ' + data + '\n' + jsonText.slice(dataIndex);
+            ret = text.slice(0, dataIndex) + insertText + text.slice(dataIndex);
         }
         else {
             // ケツカンマがない場合
-            ret = jsonText.slice(0, commaIndex + 1) + ',' + jsonText.slice(commaIndex + 1, dataIndex) + name + ': ' + data + '\n' + jsonText.slice(dataIndex);
+            ret = text.slice(0, commaIndex + 1) + ',' + text.slice(commaIndex + 1, dataIndex) + insertText + text.slice(dataIndex);
         }
     }
 
     // データをクリア
     closeBracketList.length = 0;
-    jsonText = '';
-    lastCommaIndex = -1;
     return ret;
 }
