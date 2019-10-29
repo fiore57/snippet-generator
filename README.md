@@ -7,6 +7,8 @@
 ## Overview
 Snippet Generator is an extension of Visual Studio Code that makes it easy to add snippets.
 
+![gif](./snippet-generator.gif)
+
 ## Description
 VSCode has a function to call registered snippets. This is very useful, but to register a snippet, we must enclose the statement with double quotes on each line, or escape tabs and newlines. (of course, double quotes in the snippet must be escaped) It is quite bother to do that.
 ```json
