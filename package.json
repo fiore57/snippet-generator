@@ -15,7 +15,7 @@
     "onCommand:extension.generateSnippet"
   ],
   "engines": {
-    "vscode": "^1.39.0"
+    "vscode": "^1.44.0"
   },
   "main": "./out/src/extension.js",
   "contributes": {
