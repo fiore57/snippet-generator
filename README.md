@@ -2,7 +2,7 @@
 
 [![Build Status](https://dev.azure.com/fiore57/snippet-generator/_apis/build/status/fiore57.snippet-generator?branchName=master)](https://dev.azure.com/fiore57/snippet-generator/_build/latest?definitionId=2&branchName=master)
 
-[日本語](#概要)
+[日本語](#overview-ja)
 
 ## Overview
 
@@ -85,6 +85,8 @@ This extension is released under the WTFPL, see LICENSE.
 ---
 
 <br />
+
+<a id="overview-ja"></a>
 
 ## 概要
 
