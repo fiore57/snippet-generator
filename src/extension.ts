@@ -155,6 +155,7 @@ export function activate(context: vscode.ExtensionContext) {
             } else {
               // ファイルが既に存在する場合
               let snippetList = json.parseJson(text.toString());
+              console.log(snippetList);
 
               if (snippetList === undefined) {
                 // JSONの解析に失敗
