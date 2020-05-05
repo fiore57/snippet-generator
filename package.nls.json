@@ -1,6 +1,6 @@
 {
   "cmd.generateSnippet.title": "Generate snippet",
-  "cfg.snippetFilePath.description": "Specify the location of the snippet file.\n ex) C:\\Users\\***\\Appdata\\Roaming\\Code\\User\\snippets\\\n If the \"default\" does not work, please set the path.\n (NOTE: If you are using WSL, \"default\" will not work.)\n ex) /mnt/c/Users/***/Appdata/Roaming/Code/User/snippets/",
+  "cfg.snippetFilePath.description": "Specify the location of the snippet file.\n ex) C:\\\\Users\\\\***\\\\Appdata\\\\Roaming\\\\Code\\\\User\\\\snippets\\\\\n If the \"default\" does not work, please set the path.\n (NOTE: If you are using WSL, \"default\" will not work.)\n ex) /mnt/c/Users/***/Appdata/Roaming/Code/User/snippets/",
   "ts.fileNotFound": "File not found.",
   "ts.canceled": "Snippet registration has been canceled.",
   "ts.failed": "Failed to register snippet. Please check \"generateSnippet.snippetFilePath\" in \"setting.json\".",
