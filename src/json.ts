@@ -52,7 +52,7 @@ export function parseJson(text: string): SnippetDataList | undefined {
       out.substring(0, result.index) + fixed + text.substring(regexp.lastIndex);
   }
   try {
-    return JSON.parse(out);
+    return JSON.parse(text);
   } catch (e) {
     console.log(e);
     return undefined;

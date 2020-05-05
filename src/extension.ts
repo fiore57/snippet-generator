@@ -60,7 +60,7 @@ export function activate(context: vscode.ExtensionContext) {
 
       const selectedText = getSelectingText(editor);
 
-      let curSnippet = { language: "", name: "", trigger: "", description: "" };
+      let newSnippet = { language: "", name: "", trigger: "", description: "" };
 
       vscode.languages
         .getLanguages()
@@ -73,7 +73,7 @@ export function activate(context: vscode.ExtensionContext) {
         .then((language) => {
           if (language === undefined) return;
           // 言語の処理・スニペット名を入力
-          curSnippet.language = language;
+          newSnippet.language = language;
           return vscode.window.showInputBox({
             prompt: localeString("ts.enterName"),
             placeHolder: "name",
@@ -86,7 +86,7 @@ export function activate(context: vscode.ExtensionContext) {
             return;
           }
           // スニペット名の処理・トリガーの入力
-          curSnippet.name = name;
+          newSnippet.name = name;
           return vscode.window.showInputBox({
             prompt: localeString("ts.enterTrigger"),
             placeHolder: "prefix",
@@ -99,7 +99,7 @@ export function activate(context: vscode.ExtensionContext) {
             return;
           }
           // トリガーの処理・説明の入力
-          curSnippet.trigger = trigger;
+          newSnippet.trigger = trigger;
           return vscode.window.showInputBox({
             prompt: localeString("ts.enterDescription"),
             placeHolder: "description",
@@ -108,7 +108,7 @@ export function activate(context: vscode.ExtensionContext) {
         .then((description) => {
           if (description === undefined) return true;
           // 説明の処理
-          curSnippet.description = description;
+          newSnippet.description = description;
           return false;
         })
         .then((isCanceled) => {
@@ -120,7 +120,7 @@ export function activate(context: vscode.ExtensionContext) {
           // スニペットファイルのパスを取得
           let snippetFilePath: string = getSnippetFilePath();
 
-          const snippetFileName = curSnippet.language + ".json";
+          const snippetFileName = newSnippet.language + ".json";
           snippetFilePath += snippetFileName;
 
           // スニペットの追加処理
@@ -133,20 +133,20 @@ export function activate(context: vscode.ExtensionContext) {
                   vscode.window.showErrorMessage(localeString("ts.failed"));
                   return;
                 }
-                const snippet: json.SnippetData = {
-                  prefix: curSnippet.trigger,
+                const newSnippetObj: json.SnippetData = {
+                  prefix: newSnippet.trigger,
                   body: selectedText,
-                  description: curSnippet.description,
+                  description: newSnippet.description,
                 };
-                const snippetList: json.SnippetDataList = {
-                  [curSnippet.name]: snippet,
+                const snippetObjList: json.SnippetDataList = {
+                  [newSnippet.name]: newSnippetObj,
                 };
-                const newText = JSON.stringify(snippetList, null, "\t");
-                writeFile(snippetFilePath, newText, (_) => {});
+                const newJsonText = JSON.stringify(snippetObjList, null, "\t");
+
+                writeFile(snippetFilePath, newJsonText, (_) => {});
                 vscode.window.showInformationMessage(
                   localeString("ts.snippetFileLocation") + snippetFilePath
                 );
-
                 vscode.window.showInformationMessage(
                   localeString("ts.registered")
                 );
@@ -154,10 +154,9 @@ export function activate(context: vscode.ExtensionContext) {
               });
             } else {
               // ファイルが既に存在する場合
-              let snippetList = json.parseJson(text.toString());
-              console.log(snippetList);
+              let snippetObjList = json.parseJson(text.toString());
 
-              if (snippetList === undefined) {
+              if (snippetObjList === undefined) {
                 // JSONの解析に失敗
                 vscode.window.showErrorMessage(
                   localeString("ts.parseError") + snippetFileName
@@ -165,24 +164,53 @@ export function activate(context: vscode.ExtensionContext) {
                 return;
               }
 
-              if (snippetList[curSnippet.name] !== undefined) {
+              const newSnippetObj: json.SnippetData = {
+                prefix: newSnippet.trigger,
+                body: selectedText,
+                description: newSnippet.description,
+              };
+
+              if (snippetObjList[newSnippet.name] !== undefined) {
                 // 同名のスニペットが存在する
-                vscode.window.showErrorMessage(
-                  localeString("ts.alreadyExists")
-                );
+                vscode.window
+                  .showWarningMessage(
+                    localeString("ts.alreadyExists"),
+                    localeString("ts.overwrite"),
+                    localeString("ts.cancel")
+                  )
+                  .then((str) => {
+                    if (
+                      str === undefined ||
+                      str === localeString("ts.cancel")
+                    ) {
+                      vscode.window.showInformationMessage(
+                        localeString("ts.notOverwritten")
+                      );
+                      return;
+                    }
+                    snippetObjList![newSnippet.name] = newSnippetObj;
+
+                    const newJsonText = JSON.stringify(
+                      snippetObjList,
+                      null,
+                      "\t"
+                    );
+
+                    // Jsonファイルのコメントは消える
+                    writeFile(snippetFilePath, newJsonText, (_) => {});
+                    vscode.window.showInformationMessage(
+                      localeString("ts.overwritten")
+                    );
+                    return;
+                  });
                 return;
               }
 
-              const snippet: json.SnippetData = {
-                prefix: curSnippet.trigger,
-                body: selectedText,
-                description: curSnippet.description,
-              };
-              const newText = JSON.stringify(snippet, null, "\t");
+              const newText = JSON.stringify(newSnippetObj, null, "\t");
 
               writeFile(
                 snippetFilePath,
-                json.insertSnippetToJson(curSnippet.name, newText),
+                json.insertSnippetToJson(newSnippet.name, newText),
                 (_) => {}
               );
 
