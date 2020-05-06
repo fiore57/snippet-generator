@@ -43,7 +43,7 @@ Snippet generator allows you to **easily** and **quickly** register snippets.
 5. Enter snippet trigger.
 6. Enter snippet description (optional).
 
-If you enter the name of the snippet already exists, you can overwrite the snippet.
+If you enter the name of the snippet that already exists, you can overwrite the snippet.
 
 ## Settings
 
